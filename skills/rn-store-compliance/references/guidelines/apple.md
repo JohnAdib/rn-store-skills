@@ -5,6 +5,62 @@ Guideline numbers match Apple's official numbering at https://developer.apple.co
 
 ---
 
+## Quick Index
+
+| # | Guideline | Key Risk |
+|---|-----------|----------|
+| 1.1 | Objectionable Content | UGC needs filter + report + block |
+| 1.1.1-1.1.7 | Specific Content Types | Defamatory, violent, sexual, religious, false info |
+| 1.2 | User Safety | No dangerous behavior encouragement |
+| 1.3 | Kids Category | No ads, analytics, external links without parental gate |
+| 1.4 | Physical Harm | Medical disclaimers, no unqualified dosage info |
+| 1.5 | Developer Info | Accurate contact info required |
+| 1.6 | Data Security | Secure data handling |
+| 1.7 | Criminal Activity | Must report to authorities |
+| 2.1 | App Completeness | No placeholders, crashes, or beta labels |
+| 2.2 | Beta Testing | TestFlight only, no beta references in store |
+| 2.3 | Accurate Metadata | Screenshots match app, no keyword stuffing |
+| 2.3.1 | Metadata Text | No competitor names, accurate description |
+| 2.3.4 | Previews | Video previews = screen capture only |
+| 2.3.7 | Age Rating | Complete questionnaire honestly |
+| 2.3.12 | What's New | Describe actual changes |
+| 2.4 | Hardware Compatibility | Graceful degradation, iPad orientation |
+| 2.4.5 | macOS Sandbox | Entitlements must match functionality |
+| 2.5 | Software Requirements | iOS 26 SDK required (April 2026+) |
+| 2.5.1 | Public APIs Only | No private frameworks |
+| 2.5.6 | IPv6 | Must work on IPv6-only networks |
+| 3.1.1 | In-App Purchase | Digital goods MUST use Apple IAP |
+| 3.1.2 | Subscriptions | ToS + PP links, clear pricing, 7-day minimum |
+| 3.1.3 | Other Payments | Reader apps, physical goods, person-to-person |
+| 3.2 | Business Issues | No bait-and-switch, no forced ratings |
+| 4.0 | Design Quality | Native feel, safe areas, dark mode |
+| 4.1 | Copycats | Original design required |
+| 4.2 | Minimum Functionality | More than a website wrapper |
+| 4.2.1-4.2.7 | Sub-rules | ARKit, marketing, self-contained, templates |
+| 4.3 | Spam | No duplicate/template apps |
+| 4.4 | Extensions | Keyboard, Safari extension rules |
+| 4.5 | Apple Services | SIWA, Maps, HealthKit, HomeKit |
+| 4.5.4 | Push Notifications | Not required, no spam, opt-in |
+| 4.5.6 | Apple Emoji | Unicode OK |
+| 4.7 | HTML5 Games | Must have meaningful native functionality |
+| 4.8 | Sign in with Apple | REQUIRED if any social login offered |
+| 4.9 | Apple Pay | Recurring payment disclosure |
+| 4.10 | OS Capabilities | Don't charge for OS features |
+| 5.1 | Privacy | Policy required, consent required, data minimization |
+| 5.1.1 | Data Collection | PrivacyInfo.xcprivacy, Privacy Nutrition Labels |
+| 5.1.2 | Data Use/Sharing | No repurposing without consent |
+| 5.1.3 | HealthKit | No ads/marketing with health data |
+| 5.1.4 | Kids Privacy | COPPA/GDPR compliance |
+| 5.1.5 | Location Services | Purpose string required |
+| 5.2 | Intellectual Property | Trademarks, copyright, Apple branding |
+| 5.2.5 | Apple Trademarks | No device names in app name/icon |
+| 5.3 | Gambling | Licensed per jurisdiction, disclose loot box odds |
+| 5.4 | VPN Apps | NEVPNManager, organization account |
+| 5.5 | MDM | Enterprise/education only |
+| 5.6 | Developer Conduct | No review manipulation, respond within 14 days |
+
+---
+
 ## 1. Safety (Guidelines 1.x)
 
 ### 1.1 Objectionable Content

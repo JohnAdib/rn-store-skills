@@ -1,6 +1,6 @@
 {
   "name": "rn-store-skills",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "React Native App Store & Google Play compliance skill for AI coding agents. Checks every code change against Apple and Google store guidelines to prevent rejections.",
   "keywords": [
     "agent-skill",

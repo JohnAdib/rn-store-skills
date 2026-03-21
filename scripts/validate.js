@@ -26,10 +26,9 @@ function check(condition, msg) {
 
 console.log("\nValidating rn-store-skills package...\n");
 
-// 1. SKILL.md exists
+// 1. SKILL.md exists and has frontmatter
 check(fs.existsSync(SKILL_MD), "SKILL.md exists");
 
-// 2. SKILL.md has frontmatter
 if (fs.existsSync(SKILL_MD)) {
   const content = fs.readFileSync(SKILL_MD, "utf8");
   check(content.startsWith("---"), "SKILL.md has YAML frontmatter");
@@ -37,39 +36,95 @@ if (fs.existsSync(SKILL_MD)) {
   check(content.includes("description:"), "SKILL.md has description field");
 }
 
-// 3. References directory exists
+// 2. References directory exists
 check(fs.existsSync(REFS_DIR), "references/ directory exists");
 
-// 4. Required reference files exist
-const requiredRefs = [
-  "apple-guidelines.md",
-  "google-play-guidelines.md",
-  "react-native-patterns.md",
-  "pre-submission-checklist.md",
-  "handling-rejections.md",
-];
+// 3. Guidelines directory and files
+const GUIDELINES_DIR = path.join(REFS_DIR, "guidelines");
+check(fs.existsSync(GUIDELINES_DIR), "references/guidelines/ exists");
 
-if (fs.existsSync(REFS_DIR)) {
-  for (const ref of requiredRefs) {
-    check(
-      fs.existsSync(path.join(REFS_DIR, ref)),
-      `references/${ref} exists`
-    );
-  }
+const requiredGuidelines = ["apple.md", "google-play.md"];
+for (const file of requiredGuidelines) {
+  check(
+    fs.existsSync(path.join(GUIDELINES_DIR, file)),
+    `guidelines/${file} exists`
+  );
 }
 
-// 5. README exists
-check(fs.existsSync(path.join(ROOT, "README.md")), "README.md exists");
+// 4. Rules directory and files
+const RULES_DIR = path.join(REFS_DIR, "rules");
+check(fs.existsSync(RULES_DIR), "references/rules/ exists");
 
-// 6. LICENSE exists
+const requiredRules = [
+  "metadata.md",
+  "subscriptions.md",
+  "privacy.md",
+  "design.md",
+  "entitlements.md",
+  "performance.md",
+  "permissions.md",
+];
+for (const file of requiredRules) {
+  check(fs.existsSync(path.join(RULES_DIR, file)), `rules/${file} exists`);
+}
+
+// 5. App-types directory and files
+const APP_TYPES_DIR = path.join(REFS_DIR, "app-types");
+check(fs.existsSync(APP_TYPES_DIR), "references/app-types/ exists");
+
+const requiredAppTypes = [
+  "social.md",
+  "kids.md",
+  "health-fitness.md",
+  "games.md",
+  "ai.md",
+  "crypto-finance.md",
+  "vpn.md",
+];
+for (const file of requiredAppTypes) {
+  check(
+    fs.existsSync(path.join(APP_TYPES_DIR, file)),
+    `app-types/${file} exists`
+  );
+}
+
+// 6. Features directory and files
+const FEATURES_DIR = path.join(REFS_DIR, "features");
+check(fs.existsSync(FEATURES_DIR), "references/features/ exists");
+
+const requiredFeatures = ["subscriptions.md", "ugc.md", "macos.md"];
+for (const file of requiredFeatures) {
+  check(
+    fs.existsSync(path.join(FEATURES_DIR, file)),
+    `features/${file} exists`
+  );
+}
+
+// 7. Top-level reference files
+const requiredTopLevel = [
+  "all-apps.md",
+  "react-native.md",
+  "pre-submission.md",
+  "rejections.md",
+];
+for (const file of requiredTopLevel) {
+  check(fs.existsSync(path.join(REFS_DIR, file)), `references/${file} exists`);
+}
+
+// 8. README and LICENSE
+check(fs.existsSync(path.join(ROOT, "README.md")), "README.md exists");
 check(fs.existsSync(path.join(ROOT, "LICENSE")), "LICENSE exists");
 
-// 7. No extra SKILL.md files (the single-SKILL.md constraint)
+// 9. Single SKILL.md constraint
 const allSkillMds = [];
 function findSkillMds(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
-    if (entry.isDirectory() && entry.name !== "node_modules" && entry.name !== ".git") {
+    if (
+      entry.isDirectory() &&
+      entry.name !== "node_modules" &&
+      entry.name !== ".git"
+    ) {
       findSkillMds(full);
     } else if (entry.name === "SKILL.md") {
       allSkillMds.push(full);
@@ -84,7 +139,9 @@ check(
 
 console.log("");
 if (errors > 0) {
-  console.error(`❌❌❌ Validation failed with ${errors} error(s). Fix them before publishing.\n`);
+  console.error(
+    `❌❌❌ Validation failed with ${errors} error(s). Fix them before publishing.\n`
+  );
   process.exit(1);
 } else {
   console.log("✅✅✅ All checks passed. Ready to publish!\n");

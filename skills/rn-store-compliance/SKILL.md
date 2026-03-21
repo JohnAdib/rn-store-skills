@@ -14,7 +14,7 @@ description: >
 license: MIT
 metadata:
   author: JohnAdib
-  version: "1.0.0"
+  version: "2.0.0"
   tags:
     - react-native
     - expo
@@ -32,92 +32,97 @@ Apple App Store and Google Play Store guidelines. Your job is to catch issues th
 rejections **before** they reach app review.
 
 About 40% of app submissions get rejected on the first attempt. Most rejections come from
-a small set of repeated mistakes — wrong permission usage, missing privacy declarations,
-broken payment flows, or metadata issues. This skill helps you avoid all of them.
+a small set of repeated mistakes. This skill helps you avoid all of them.
 
 ## How to Use This Skill
 
 When a developer asks you to add or modify any feature in a React Native app:
 
 1. **Build the feature** as requested
-2. **Run the compliance check** against the change — consult the relevant reference files below
-3. **Flag any violations** with the specific guideline reference number and a concrete fix
+2. **Run the compliance check** — consult the relevant reference files below
+3. **Flag any violations** with the specific guideline number and a concrete fix
 4. **Summarize** what passed and what needs attention
-
-If a change touches multiple areas (e.g., adding a subscription screen involves payments,
-UI, and privacy), check all relevant reference files.
 
 ## Reference Files
 
-This skill uses progressive loading. Only read the reference files relevant to the current
-task — don't load everything at once.
+This skill uses progressive loading. Only read what's relevant — don't load everything.
 
-### Apple App Store Guidelines
+### Step 1: Always Load
 
-Refer to [references/apple-guidelines.md](references/apple-guidelines.md) for the complete
-Apple App Store Review Guidelines covering:
-- Safety (1.x) — objectionable content, kids, health apps
-- Performance (2.x) — completeness, metadata, SDK requirements
-- Business (3.x) — IAP, subscriptions, reader apps
-- Design (4.x) — quality, copycats, minimum functionality, Sign in with Apple
-- Legal (5.x) — privacy, ATT, PrivacyInfo.xcprivacy, nutrition labels
+| File | Purpose |
+|------|---------|
+| `references/all-apps.md` | Universal checklist — every app, both stores |
+| `references/react-native.md` | RN/Expo-specific patterns and checks |
 
-Read this file when the change involves any iOS-specific feature, Apple services integration,
-or when preparing for App Store submission.
+### Step 2: Load by App Type
 
-### Google Play Store Guidelines
+Determine the app type and load the matching checklist:
 
-Refer to [references/google-play-guidelines.md](references/google-play-guidelines.md) for
-the complete Google Play Store policies covering:
-- Content policies — restricted content, deceptive behavior, ads
-- Technical requirements — target SDK, AAB, 64-bit, billing library, foreground services
-- Store listing & metadata — screenshots, data safety, content rating
-- Closed testing requirements
+| App Type | File |
+|----------|------|
+| Social / messaging / community | `references/app-types/social.md` |
+| Kids Category | `references/app-types/kids.md` |
+| Health / fitness / medical | `references/app-types/health-fitness.md` |
+| Games / gambling | `references/app-types/games.md` |
+| AI / generative AI | `references/app-types/ai.md` |
+| Crypto / finance / trading | `references/app-types/crypto-finance.md` |
+| VPN / networking | `references/app-types/vpn.md` |
 
-Read this file when the change involves any Android-specific feature, Google services
-integration, or when preparing for Play Store submission.
+### Step 3: Load by Feature
 
-### React Native Specific Patterns
+If the app uses these features, load the matching checklist:
 
-Refer to [references/react-native-patterns.md](references/react-native-patterns.md) for
-RN-specific compliance issues covering:
-- Apple-specific RN checks (Info.plist, ATS, Sign in with Apple, background modes)
-- Google-specific RN checks (AndroidManifest, ProGuard, signing, crash rates)
-- 10 most common React Native rejection patterns
-- AI/generative AI feature rules for both stores
-- Age rating requirements
+| Feature | File |
+|---------|------|
+| Subscriptions / IAP / loot boxes | `references/features/subscriptions.md` |
+| User-generated content | `references/features/ugc.md` |
+| macOS / Mac App Store | `references/features/macos.md` |
 
-Read this file for every change — it contains the patterns most likely to cause rejection
-in React Native apps specifically.
+### Step 4: Load Rules for Specific Issues
 
-### Pre-Submission Checklist
+When you need detection patterns, fix steps, and example rejection messages:
 
-Refer to [references/pre-submission-checklist.md](references/pre-submission-checklist.md)
-for the complete pre-submission verification checklist. This covers both-store checks,
-Apple-specific checks, and Google Play-specific checks.
+| Category | File |
+|----------|------|
+| Metadata violations | `references/rules/metadata.md` |
+| Subscription/payment issues | `references/rules/subscriptions.md` |
+| Privacy violations | `references/rules/privacy.md` |
+| Design rejections | `references/rules/design.md` |
+| Entitlement/capability issues | `references/rules/entitlements.md` |
+| Crashes / performance | `references/rules/performance.md` |
+| Permission problems | `references/rules/permissions.md` |
 
-Read this file when the developer is preparing a release build or submitting to either store.
+### Step 5: Submission & Rejection
 
-### Handling Rejections
+| Task | File |
+|------|------|
+| Pre-submission verification | `references/pre-submission.md` |
+| Got a rejection / need to appeal | `references/rejections.md` |
 
-Refer to [references/handling-rejections.md](references/handling-rejections.md) for guidance
-on responding to App Store and Play Store rejections, including appeal processes.
+### Full Store Guidelines
 
-Read this file when a developer reports a rejection or asks how to respond to one.
+| Store | File |
+|-------|------|
+| Apple App Store Review Guidelines | `references/guidelines/apple.md` |
+| Google Play Store Policies | `references/guidelines/google-play.md` |
 
 ## Quick Decision Guide
 
-Use this to decide which reference files to read for common tasks:
-
 | Task | Files to Read |
 |------|--------------|
-| Adding a new feature | `react-native-patterns.md` + relevant store guide |
-| Implementing payments/subscriptions | `apple-guidelines.md` (section 3) + `google-play-guidelines.md` (billing) |
-| Adding permissions (camera, location, etc.) | `react-native-patterns.md` (permissions section) |
-| Adding push notifications | `react-native-patterns.md` + both store guides |
-| Adding user-generated content | `apple-guidelines.md` (section 1.1) + `google-play-guidelines.md` (content) |
-| Privacy/data collection changes | `apple-guidelines.md` (section 5.1) + `google-play-guidelines.md` (privacy) |
-| Preparing for submission | `pre-submission-checklist.md` |
-| Got a rejection | `handling-rejections.md` |
-| Adding AI features | `react-native-patterns.md` (AI section) |
-| Upgrading React Native version | `react-native-patterns.md` (all sections) |
+| Adding a new feature | `all-apps.md` + `react-native.md` + relevant app-type |
+| Implementing payments/subscriptions | `features/subscriptions.md` + `rules/subscriptions.md` |
+| Adding permissions (camera, location, etc.) | `rules/permissions.md` + `react-native.md` |
+| Adding push notifications | `react-native.md` (push section) |
+| Adding user-generated content | `features/ugc.md` + `app-types/social.md` |
+| Privacy/data collection changes | `rules/privacy.md` + `guidelines/apple.md` (5.x) |
+| Preparing for submission | `pre-submission.md` + `all-apps.md` |
+| Got a rejection | `rejections.md` + matching `rules/*.md` |
+| Adding AI features | `app-types/ai.md` + `rules/metadata.md` (China) |
+| Building a kids app | `app-types/kids.md` |
+| Building a health/medical app | `app-types/health-fitness.md` |
+| Building a game | `app-types/games.md` + `features/subscriptions.md` |
+| Crypto/finance app | `app-types/crypto-finance.md` |
+| VPN app | `app-types/vpn.md` |
+| macOS app | `features/macos.md` + `rules/entitlements.md` |
+| Upgrading React Native | `react-native.md` + `rules/performance.md` |
