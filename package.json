@@ -1,6 +1,6 @@
 {
   "name": "rn-store-skills",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React Native App Store & Google Play compliance skill for AI coding agents. Checks every code change against Apple and Google store guidelines to prevent rejections.",
   "keywords": [
     "agent-skill",
@@ -19,11 +19,11 @@
     "windsurf",
     "ai-agent"
   ],
-  "author": "johnad <johnad@justzapp.com>",
+  "author": "John Adib <Mr.John.Adib@gmail.com> (https://MrAdib.com)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnad/rn-store-skills"
+    "url": "https://github.com/JohnAdib/rn-store-skills"
   },
   "homepage": "https://www.npmjs.com/package/rn-store-skills",
   "files": [
@@ -32,11 +32,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "publish:npm": "npm publish --access public",
-    "prepublishOnly": "node scripts/validate.js",
-    "pack:check": "npm pack --dry-run",
-    "version:patch": "npm version patch && npm run publish:npm",
-    "version:minor": "npm version minor && npm run publish:npm",
-    "version:major": "npm version major && npm run publish:npm"
+    "validate": "node scripts/validate.js",
+    "prepublishOnly": "node scripts/validate.js"
   }
 }

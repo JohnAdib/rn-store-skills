@@ -19,7 +19,7 @@ About 40% of app submissions get rejected on the first try. This skill helps you
 ### Via skills CLI (recommended)
 
 ```bash
-npx skills add johnad/rn-store-skills
+npx skills add JohnAdib/rn-store-skills
 ```
 
 ### Via skillpm

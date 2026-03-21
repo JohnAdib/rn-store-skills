@@ -17,10 +17,10 @@ let errors = 0;
 
 function check(condition, msg) {
   if (!condition) {
-    console.error(`  ✗ ${msg}`);
+    console.error(`  ❌ ${msg}`);
     errors++;
   } else {
-    console.log(`  ✓ ${msg}`);
+    console.log(`  ✅ ${msg}`);
   }
 }
 
@@ -84,8 +84,8 @@ check(
 
 console.log("");
 if (errors > 0) {
-  console.error(`Validation failed with ${errors} error(s). Fix them before publishing.\n`);
+  console.error(`❌❌❌ Validation failed with ${errors} error(s). Fix them before publishing.\n`);
   process.exit(1);
 } else {
-  console.log("All checks passed. Ready to publish!\n");
+  console.log("✅✅✅ All checks passed. Ready to publish!\n");
 }

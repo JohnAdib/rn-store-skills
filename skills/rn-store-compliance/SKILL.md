@@ -13,7 +13,7 @@ description: >
   App Tracking Transparency, IDFA, permissions, app signing, release build, or app bundle.
 license: MIT
 metadata:
-  author: johnad
+  author: JohnAdib
   version: "1.0.0"
   tags:
     - react-native
