@@ -1,0 +1,8 @@
+# Dev & docs — not needed in the npm package
+docs/
+.github/
+scripts/
+.git/
+.DS_Store
+*.log
+.env
