@@ -1,17 +1,3 @@
----
-name: asc-crash-triage
-description: >
-  Triage TestFlight crashes, beta feedback, and performance diagnostics from
-  App Store Connect. Trigger on: crash report, crash triage, TestFlight crash,
-  beta feedback, app crash, crash log, performance diagnostics, hang diagnostics,
-  disk write diagnostics, symbolication, dSYM.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, crashes, diagnostics, testflight, debugging]
----
-
 # Crash Triage
 
 Analyze TestFlight crashes, beta feedback, and performance diagnostics.

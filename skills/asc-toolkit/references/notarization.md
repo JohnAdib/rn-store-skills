@@ -1,16 +1,3 @@
----
-name: asc-notarization
-description: >
-  Archive, export, and notarize macOS apps for distribution outside the App Store
-  using Developer ID signing. Trigger on: notarization, notarize, Developer ID,
-  staple, macOS distribution, DMG, PKG notarize, xcrun notarytool, Gatekeeper.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, macos, notarization, developer-id]
----
-
 # macOS Notarization
 
 Notarize macOS apps for distribution outside the Mac App Store via Developer ID.

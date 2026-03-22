@@ -1,17 +1,3 @@
----
-name: asc-pricing
-description: >
-  Set territory-specific pricing for subscriptions and in-app purchases using
-  purchasing power parity strategies. Trigger on: pricing, app pricing, subscription
-  pricing, IAP pricing, territory pricing, regional pricing, purchasing power parity,
-  PPP, price tiers, price schedule, Google Play pricing.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, pricing, subscriptions, iap, revenue]
----
-
 # Territory-Specific Pricing
 
 Set regional pricing for subscriptions and in-app purchases.

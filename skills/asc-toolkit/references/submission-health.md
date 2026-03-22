@@ -1,18 +1,3 @@
----
-name: asc-submission-health
-description: >
-  Preflight App Store submissions — verify build status, metadata completeness,
-  screenshots, export compliance, and review readiness before submitting.
-  Trigger on: submission checklist, ready to submit, preflight, submission health,
-  review readiness, app review preparation, before submitting, submission errors.
-  Note: For policy compliance (guidelines, rejection rules), see rn-store-compliance skill.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, submission, review, preflight, checklist]
----
-
 # Submission Health Check
 
 Verify App Store Connect technical readiness before submitting for review.

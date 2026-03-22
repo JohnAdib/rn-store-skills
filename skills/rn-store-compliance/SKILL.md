@@ -1,27 +1,9 @@
 ---
 name: rn-store-compliance
 description: >
-  React Native app store compliance checker for Apple App Store and Google Play Store.
-  Use this skill whenever someone is building, modifying, or reviewing a React Native (or Expo)
-  app that will be published to the Apple App Store or Google Play Store. This includes adding
-  features, fixing bugs, implementing payments, handling permissions, adding push notifications,
-  integrating ads, setting up analytics, handling user data, creating onboarding flows, or any
-  code change — even small ones. The skill ensures every change is verified against current
-  Apple and Google store guidelines before shipping, preventing rejections. Trigger on any
-  mention of: React Native, Expo, iOS, Android, App Store, Google Play, mobile app, TestFlight,
-  app review, app submission, store rejection, in-app purchase, push notification, privacy policy,
-  App Tracking Transparency, IDFA, permissions, app signing, release build, or app bundle.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "5.0.0"
-  tags:
-    - react-native
-    - expo
-    - app-store
-    - google-play
-    - compliance
-    - mobile
+  React Native app store compliance checker for Apple App Store and Google Play.
+  Use when building, modifying, or submitting any React Native or Expo app.
+  Catches rejection-causing issues before app review.
 ---
 
 # React Native Store Compliance Skill

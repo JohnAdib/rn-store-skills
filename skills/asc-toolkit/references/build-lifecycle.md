@@ -1,16 +1,3 @@
----
-name: asc-build-lifecycle
-description: >
-  Track build processing, find latest builds, monitor state, and clean up old builds
-  in App Store Connect. Trigger on: build status, build processing, waiting for build,
-  build retention, cleanup old builds, expired builds, TestFlight build, asc builds.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, builds, lifecycle, cleanup]
----
-
 # Build Lifecycle Management
 
 Track, monitor, and clean up builds in App Store Connect.

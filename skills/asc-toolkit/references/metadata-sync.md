@@ -1,18 +1,3 @@
----
-name: asc-metadata-sync
-description: >
-  Sync, validate, and localize App Store metadata across 37+ locales. Manage
-  version and app-level fields, translate with LLM assistance, enforce character
-  limits, and bulk-update localizations. Trigger on: app metadata, app description,
-  keywords, localization, translate metadata, What's New, metadata sync, app name,
-  subtitle, .strings file, locale, multi-language.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, metadata, localization, translation]
----
-
 # Metadata Sync & Localization
 
 Sync, validate, and translate App Store metadata across all locales.

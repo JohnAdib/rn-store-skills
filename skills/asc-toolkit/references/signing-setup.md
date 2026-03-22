@@ -1,17 +1,3 @@
----
-name: asc-signing-setup
-description: >
-  Set up and manage iOS/macOS code signing — bundle IDs, capabilities, certificates,
-  and provisioning profiles via asc CLI. Trigger on: code signing, certificate,
-  provisioning profile, bundle ID, capability, entitlement, signing identity,
-  Fastlane match, EAS credentials, certificate rotation, expired certificate.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, signing, certificates, profiles, capabilities]
----
-
 # Code Signing Setup
 
 Manage bundle IDs, capabilities, certificates, and provisioning profiles.

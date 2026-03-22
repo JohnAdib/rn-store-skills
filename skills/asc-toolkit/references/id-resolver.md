@@ -1,17 +1,3 @@
----
-name: asc-id-resolver
-description: >
-  Resolve App Store Connect IDs from human-friendly names — apps, builds, versions,
-  TestFlight groups, testers, and review submissions. Trigger on: find app ID,
-  resolve ID, app store connect ID, bundle ID lookup, version ID, build ID,
-  group ID, tester ID.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, utility, id-resolution]
----
-
 # ID Resolver
 
 Map human-friendly names to App Store Connect API identifiers.

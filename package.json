@@ -1,7 +1,7 @@
 {
   "name": "rn-store-skills",
-  "version": "5.0.0",
-  "description": "React Native store compliance + App Store Connect automation skills for AI coding agents. 17 skills covering rejection prevention, copyright/IP, legal compliance, OTA updates, subscriptions, build management, metadata, TestFlight, signing, pricing, and more.",
+  "version": "6.0.0",
+  "description": "React Native store compliance + App Store Connect automation skills for AI coding agents. 2 skills: rn-store-compliance (rejection prevention, guidelines, 35+ reference files) and asc-toolkit (build, sign, release, metadata, TestFlight, pricing, screenshots, crash triage, ASO).",
   "keywords": [
     "agent-skill",
     "react-native",

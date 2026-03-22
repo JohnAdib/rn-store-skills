@@ -1,17 +1,3 @@
----
-name: asc-aso-audit
-description: >
-  Run App Store Optimization audits — analyze keywords, metadata utilization,
-  cross-locale gaps, and competitive positioning. Trigger on: ASO, App Store
-  Optimization, keyword optimization, keyword research, app ranking, app visibility,
-  metadata audit, keyword gaps, search ranking, Google Play keywords.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, aso, keywords, optimization, marketing]
----
-
 # ASO Audit
 
 App Store Optimization audit for Apple App Store and Google Play.

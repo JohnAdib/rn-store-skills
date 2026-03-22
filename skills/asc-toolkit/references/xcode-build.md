@@ -1,16 +1,3 @@
----
-name: asc-xcode-build
-description: >
-  Build, archive, and export iOS/macOS apps with xcodebuild and asc CLI.
-  Trigger on: xcodebuild, archive, IPA, PKG, export options, build for distribution,
-  upload to App Store Connect, EAS Build, Fastlane gym, code signing during build.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, build, xcode, archive, distribution]
----
-
 # Xcode Build & Archive
 
 Build, archive, and export iOS/macOS apps for App Store Connect upload.

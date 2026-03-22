@@ -1,17 +1,3 @@
----
-name: asc-testflight-ops
-description: >
-  Orchestrate TestFlight distribution — manage groups, testers, builds, and
-  What to Test notes. Trigger on: TestFlight, beta testing, beta distribution,
-  test group, beta tester, internal testing, external testing, What to Test,
-  beta app review, TestFlight invite.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, testflight, beta, testing, distribution]
----
-
 # TestFlight Operations
 
 Manage TestFlight distribution: groups, testers, builds, and testing notes.

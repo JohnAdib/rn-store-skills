@@ -1,17 +1,3 @@
----
-name: asc-screenshots
-description: >
-  Automate iOS and Android screenshot capture, framing, and upload for App Store
-  Connect and Google Play. Trigger on: screenshots, app screenshots, screenshot
-  automation, device frames, app preview, screenshot sizes, screenshot upload,
-  Fastlane snapshot, screenshot pipeline.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, screenshots, marketing, automation]
----
-
 # Screenshot Pipeline
 
 Automate screenshot capture, framing, and upload for both stores.

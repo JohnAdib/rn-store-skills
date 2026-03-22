@@ -1,17 +1,3 @@
----
-name: asc-subscription-localize
-description: >
-  Bulk-localize subscription and in-app purchase display names and descriptions
-  across all App Store locales. Trigger on: subscription localization, IAP display name,
-  in-app purchase translation, subscription group localization, product localization,
-  localize purchases, RevenueCat sync.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, subscriptions, iap, localization, revenuecat]
----
-
 # Subscription & IAP Localization
 
 Bulk-localize subscription and in-app purchase display names across 37 App Store locales.

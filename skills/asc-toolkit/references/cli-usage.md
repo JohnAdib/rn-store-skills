@@ -1,17 +1,3 @@
----
-name: asc-cli-usage
-description: >
-  Reference guide for the asc CLI tool — command discovery, flag conventions,
-  output formats, authentication, and multi-step workflow automation.
-  Trigger on: asc CLI, asc command, asc help, asc authentication, asc flags,
-  asc output, App Store Connect CLI, asc workflow, asc automation.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, cli, reference, utility]
----
-
 # asc CLI Usage Guide
 
 Reference for the [App Store Connect CLI](https://github.com/csjones/app-store-connect-cli) (`asc`).

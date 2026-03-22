@@ -1,17 +1,3 @@
----
-name: asc-release-flow
-description: >
-  End-to-end release workflows for TestFlight beta distribution and App Store
-  submission. Trigger on: release, submit to App Store, app release, TestFlight
-  release, phased release, staged rollout, version release, distribute build,
-  app store submission, EAS Submit.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, release, testflight, app-store, distribution]
----
-
 # Release Flow
 
 End-to-end TestFlight and App Store release workflows.

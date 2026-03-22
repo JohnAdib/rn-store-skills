@@ -1,17 +1,3 @@
----
-name: asc-whats-new-writer
-description: >
-  Generate localized App Store and Google Play release notes from git log,
-  bullet points, or free text. Trigger on: release notes, What's New, changelog,
-  app update notes, version notes, write release notes, localized release notes,
-  Google Play release notes.
-license: MIT
-metadata:
-  author: JohnAdib
-  version: "1.0.0"
-  tags: [app-store-connect, asc, release-notes, localization, changelog]
----
-
 # What's New Writer
 
 Generate engaging, localized release notes for App Store and Google Play.
