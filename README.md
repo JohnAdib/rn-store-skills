@@ -1,20 +1,58 @@
 # rn-store-skills
 
-React Native App Store & Google Play compliance skill for AI coding agents.
+React Native store compliance + App Store Connect automation skills for AI coding agents.
 
-Catches store rejection issues **before** you submit — in every chat where you write or modify React Native code.
+17 skills covering everything from rejection prevention to release automation.
 
-## What it does
+## Skills
 
-Every time you add a feature, fix a bug, or change configuration in a React Native / Expo app, this skill automatically checks your changes against:
+### Store Compliance
 
-- **Apple App Store Review Guidelines** — privacy, payments, permissions, design, metadata, and more
-- **Google Play Store Policies** — target SDK, billing, data safety, content policies, and more
-- **Common React Native rejection patterns** — Expo Go submissions, missing JS bundles, Hermes crashes, WebView-heavy apps, permission overuse
-- **20+ specific rejection rules** — with detection patterns, fix steps, and example rejection messages
-- **10 app-type checklists** — social, kids, health, games, AI, crypto, VPN, macOS, subscriptions, UGC
+| Skill | Description |
+|-------|-------------|
+| `rn-store-compliance` | React Native compliance checker — Apple & Google guidelines, 20+ rejection rules, 10 app-type checklists, RN-specific patterns |
 
-About 40% of app submissions get rejected on the first try. This skill helps you avoid that.
+### App Store Connect CLI (`asc`)
+
+#### Build & Distribution
+| Skill | Description |
+|-------|-------------|
+| `asc-xcode-build` | Build, archive, export iOS/macOS apps with xcodebuild. EAS Build & Fastlane alternatives. |
+| `asc-build-lifecycle` | Track build processing, find latest builds, monitor state, clean up old builds |
+| `asc-notarization` | macOS notarization for distribution outside App Store (Developer ID, Electron) |
+| `asc-signing-setup` | Bundle IDs, capabilities, certificates, provisioning profiles. EAS credentials & Fastlane match. |
+
+#### Release & Review
+| Skill | Description |
+|-------|-------------|
+| `asc-release-flow` | End-to-end TestFlight + App Store release workflows. Phased rollout. |
+| `asc-testflight-ops` | TestFlight distribution — groups, testers, builds, What to Test notes |
+| `asc-submission-health` | Preflight technical readiness — builds, metadata, screenshots, compliance |
+
+#### Metadata & Localization
+| Skill | Description |
+|-------|-------------|
+| `asc-metadata-sync` | Sync, validate, and translate App Store metadata across 37+ locales |
+| `asc-whats-new-writer` | Generate localized release notes from git log, bullet points, or free text |
+| `asc-subscription-localize` | Bulk-localize subscription & IAP display names. RevenueCat sync. |
+| `asc-aso-audit` | App Store Optimization — keyword analysis, field utilization, cross-locale gaps |
+
+#### Screenshots & Marketing
+| Skill | Description |
+|-------|-------------|
+| `asc-screenshots` | Screenshot capture, framing, and upload for both stores |
+
+#### Diagnostics & Pricing
+| Skill | Description |
+|-------|-------------|
+| `asc-crash-triage` | Triage TestFlight crashes, beta feedback, performance diagnostics. Sentry/Bugsnag tips. |
+| `asc-pricing` | Territory-specific pricing with purchasing power parity strategies |
+
+#### Utilities
+| Skill | Description |
+|-------|-------------|
+| `asc-cli-usage` | asc CLI reference — commands, flags, auth, output formats, workflow automation |
+| `asc-id-resolver` | Resolve human-friendly names to App Store Connect API identifiers |
 
 ## Install
 
@@ -32,109 +70,87 @@ npx skillpm add rn-store-skills
 
 ### Manual (Claude web / claude.ai)
 
-1. Download or zip the `skills/rn-store-compliance/` folder
+1. Download or zip the skill folder(s) you need from `skills/`
 2. Go to [claude.ai/customize/skills](https://claude.ai/customize/skills)
-3. Upload the zip — it contains one SKILL.md + reference files that Claude loads on-demand
+3. Upload the zip — each skill has a SKILL.md + optional reference files
 
 ### Manual (any agent)
 
-Copy `skills/rn-store-compliance/` into your project's skills directory:
+Copy the skill(s) you need into your project's skills directory:
 
 ```bash
-# Claude Code
+# All skills
+cp -r skills/* .claude/skills/
+
+# Or individual skills
 cp -r skills/rn-store-compliance .claude/skills/
-
-# Cursor
-cp -r skills/rn-store-compliance .cursor/skills/
-
-# Windsurf
-cp -r skills/rn-store-compliance .windsurf/skills/
+cp -r skills/asc-release-flow .claude/skills/
 ```
 
-## Skill Structure
+Works with Claude Code, Cursor, Windsurf, Cline, and any agent supporting skills directories.
+
+## Structure
 
 ```
-skills/rn-store-compliance/
-├── SKILL.md                              ← main hub (loaded on trigger)
-└── references/
-    ├── guidelines/
-    │   ├── apple.md                      ← Apple App Store Review Guidelines (1.x–5.x)
-    │   └── google-play.md               ← Google Play Store policies
-    ├── rules/                            ← detection → fix → example rejection
-    │   ├── metadata.md                   ← trademarks, competitors, China, previews
-    │   ├── subscriptions.md              ← ToS/PP links, misleading pricing, IAP
-    │   ├── privacy.md                    ← unnecessary data, privacy manifest
-    │   ├── design.md                     ← SIWA violations, minimum functionality
-    │   ├── entitlements.md               ← unused entitlements, background modes
-    │   ├── performance.md                ← crashes, Hermes, bundle size, ANR
-    │   └── permissions.md                ← over-requesting, vague rationale, timing
-    ├── app-types/                        ← compliance by app category
-    │   ├── social.md                     ← social / messaging / community
-    │   ├── kids.md                       ← Kids Category (COPPA, parental gates)
-    │   ├── health-fitness.md             ← health / fitness / medical
-    │   ├── games.md                      ← games / gambling / loot boxes
-    │   ├── ai.md                         ← AI / generative AI / China DST
-    │   ├── crypto-finance.md             ← crypto / finance / trading
-    │   └── vpn.md                        ← VPN / networking
-    ├── features/                         ← compliance by feature
-    │   ├── subscriptions.md              ← IAP, subscriptions, restore purchases
-    │   ├── ugc.md                        ← user-generated content, moderation
-    │   └── macos.md                      ← macOS / Mac App Store
-    ├── all-apps.md                       ← universal checklist (every app)
-    ├── react-native.md                   ← RN/Expo-specific patterns
-    ├── pre-submission.md                 ← both-store submission checklist
-    └── rejections.md                     ← how to respond to and appeal rejections
+skills/
+├── rn-store-compliance/                  ← Store compliance checker
+│   ├── SKILL.md
+│   └── references/
+│       ├── guidelines/                   ← Apple & Google guidelines
+│       ├── rules/                        ← 7 detection rule sets
+│       ├── app-types/                    ← 7 app category checklists
+│       ├── features/                     ← 3 feature checklists
+│       ├── all-apps.md                   ← Universal checklist
+│       ├── react-native.md              ← RN/Expo-specific
+│       ├── pre-submission.md            ← Pre-submission checklist
+│       └── rejections.md                ← Rejection response guide
+├── asc-xcode-build/SKILL.md             ← Build & archive
+├── asc-build-lifecycle/SKILL.md          ← Build tracking & cleanup
+├── asc-notarization/SKILL.md            ← macOS notarization
+├── asc-signing-setup/SKILL.md           ← Certs, profiles, bundle IDs
+├── asc-release-flow/SKILL.md            ← Release workflows
+├── asc-testflight-ops/SKILL.md          ← TestFlight distribution
+├── asc-submission-health/SKILL.md       ← Pre-submission readiness
+├── asc-metadata-sync/                    ← Metadata management
+│   ├── SKILL.md
+│   └── references/locales.md
+├── asc-whats-new-writer/SKILL.md        ← Release notes
+├── asc-subscription-localize/            ← Subscription localization
+│   ├── SKILL.md
+│   └── references/revenuecat.md
+├── asc-aso-audit/SKILL.md               ← ASO optimization
+├── asc-screenshots/SKILL.md             ← Screenshot pipeline
+├── asc-crash-triage/SKILL.md            ← Crash analysis
+├── asc-pricing/SKILL.md                 ← Territory pricing
+├── asc-cli-usage/                        ← CLI reference
+│   ├── SKILL.md
+│   └── references/workflows.md
+└── asc-id-resolver/SKILL.md             ← ID resolution
 ```
-
-The SKILL.md is a lightweight navigation hub. Claude loads only the reference files relevant to the current task, keeping context efficient.
 
 ## Coverage
 
-### Apple App Store
-- Safety (objectionable content, kids, health apps)
-- Performance (completeness, metadata accuracy, SDK requirements)
-- Business (IAP, subscriptions, reader apps)
-- Design (quality, copycats, minimum functionality, Sign in with Apple)
-- Legal (privacy, ATT, PrivacyInfo.xcprivacy, nutrition labels)
-- Complete guideline quick-index (50+ guidelines)
-
-### Google Play Store
-- Content policies (restricted content, deceptive behavior, ads)
-- Technical requirements (target SDK, AAB, 64-bit, billing library, foreground services)
-- Store listing (screenshots, data safety, content rating)
-- Closed testing requirements
-- Account deletion requirements
-
-### Rejection Rules
-- 20+ specific rules with grep/code detection patterns
-- React Native-specific detection commands
-- Step-by-step fix instructions
-- Real example rejection messages from Apple and Google
-
-### App-Type Checklists
+### Store Compliance (rn-store-compliance)
+- Apple App Store Review Guidelines (1.x–5.x) — full index
+- Google Play Store Policies — full index
+- 20+ rejection rules with detection patterns, fixes, and real rejection messages
 - 7 app-type checklists (social, kids, health, games, AI, crypto, VPN)
 - 3 feature checklists (subscriptions, UGC, macOS)
-- Both Apple and Google requirements in each
-- React Native library recommendations
+- React Native / Expo specific patterns and detection
 
-### React Native Specific
-- Permission handling (Info.plist / AndroidManifest.xml) with code examples
-- Payment integration (react-native-iap, RevenueCat)
-- Build configuration (ProGuard, Hermes, signing, EAS Build)
-- 10 most common RN rejection patterns with fixes
-- AI/generative AI feature rules for both stores
-- Age rating requirements
-
-## Compatibility
-
-Works with any AI coding agent that supports the Agent Skills format:
-
-- Claude Code / Claude.ai
-- Cursor
-- Windsurf
-- Cline
-- GitHub Copilot (via skills)
-- Any agent supporting skills directories
+### App Store Connect Automation (asc-*)
+- Build, archive, upload for iOS/macOS/tvOS/visionOS
+- Code signing setup and rotation
+- TestFlight distribution and beta management
+- App Store release with phased rollout
+- Metadata sync and translation (37 locales)
+- Screenshot capture, framing, and upload
+- Subscription and IAP localization
+- Crash triage and performance diagnostics
+- Territory-specific pricing with PPP strategies
+- ASO audits and keyword optimization
+- Multi-step workflow automation
+- EAS Build/Submit and Fastlane alternatives throughout
 
 ## Research & Docs
 
@@ -142,11 +158,12 @@ The `docs/` folder contains research notes, official source links, changelog, an
 
 ## Related Projects
 
-Inspired by [app-store-preflight-skills](https://github.com/truongduy2611/app-store-preflight-skills) by [@truongduy2611](https://github.com/truongduy2611) — an iOS/macOS App Store preflight checker. We expanded to both stores with React Native detection patterns, app-type checklists, and feature-specific compliance guides.
+- [app-store-preflight-skills](https://github.com/truongduy2611/app-store-preflight-skills) by [@truongduy2611](https://github.com/truongduy2611) — iOS/macOS App Store preflight checker
+- [app-store-connect-cli-skills](https://github.com/rudrankriyam/app-store-connect-cli-skills) by [@rudrankriyam](https://github.com/rudrankriyam) — App Store Connect CLI skill pack
 
 ## Contributing
 
-PRs welcome! If you know of a store guideline or rejection pattern we're missing, please open an issue or PR. See [docs/ideas/backlog.md](docs/ideas/backlog.md) for planned improvements.
+PRs welcome! If you know of a store guideline, rejection pattern, or ASC workflow we're missing, please open an issue or PR. See [docs/ideas/backlog.md](docs/ideas/backlog.md) for planned improvements.
 
 ## License
 

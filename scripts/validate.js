@@ -115,7 +115,7 @@ for (const file of requiredTopLevel) {
 check(fs.existsSync(path.join(ROOT, "README.md")), "README.md exists");
 check(fs.existsSync(path.join(ROOT, "LICENSE")), "LICENSE exists");
 
-// 9. Single SKILL.md constraint
+// 9. All SKILL.md files must have valid frontmatter
 const allSkillMds = [];
 function findSkillMds(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -133,9 +133,19 @@ function findSkillMds(dir) {
 }
 findSkillMds(ROOT);
 check(
-  allSkillMds.length === 1,
-  `Exactly 1 SKILL.md in package (found ${allSkillMds.length})`
+  allSkillMds.length >= 1,
+  `At least 1 SKILL.md in package (found ${allSkillMds.length})`
 );
+
+// 10. Validate every SKILL.md has required frontmatter
+for (const skillPath of allSkillMds) {
+  const rel = path.relative(ROOT, skillPath);
+  const content = fs.readFileSync(skillPath, "utf8");
+  check(content.startsWith("---"), `${rel} has YAML frontmatter`);
+  check(content.includes("name:"), `${rel} has name field`);
+  check(content.includes("description:"), `${rel} has description field`);
+  check(content.length > 500, `${rel} is not a stub (>${content.length} bytes)`);
+}
 
 console.log("");
 if (errors > 0) {
