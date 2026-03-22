@@ -95,3 +95,75 @@ grep -E "(react-native-camera|react-native-maps|react-native-push|react-native-b
 
 ### Example Rejection
 > Guideline 4.2 — Design — Minimum Functionality: We found that the experience your app provides is not sufficiently different from a mobile browsing experience. Your app is essentially a repackaged website with no native iOS functionality.
+
+---
+
+## Account Deletion Not Available
+**Apple**: 5.1.1(v) — Account Deletion | **Google**: Account deletion policy | **Severity**: REJECTION
+
+If your app supports account creation, you MUST provide account deletion within the app. This rule has been strictly enforced since 2022. Telling users to "email support to delete your account" is explicitly rejected.
+
+### Detect
+```bash
+# Check for account creation
+grep -rnE "(createAccount|signUp|register|createUser|RegisterScreen)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check for account deletion
+grep -rnE "(deleteAccount|delete.?account|remove.?account|AccountDeletion|DeactivateAccount)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check Settings/Profile for deletion option
+grep -rnE "(Settings|Profile|Account).*Screen" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ screens/ 2>/dev/null
+```
+
+### Fix
+1. Add a "Delete Account" button in Settings or Profile — reachable within 2-3 taps from the home screen.
+2. Show a confirmation dialog explaining what will be deleted.
+3. If user has an active subscription, inform them to cancel it separately.
+4. Process deletion within 14 days.
+5. Delete data from ALL backend systems including third-party services.
+6. Do NOT gate deletion behind: emailing support, calling a phone number, visiting a website, completing a survey, or waiting on hold.
+7. See `rules/legal.md` for full account deletion requirements including GDPR data deletion.
+
+### Example Rejection
+> Guideline 5.1.1(v) — Legal — Privacy: Your app supports account creation but does not provide a mechanism for users to initiate account deletion within the app.
+
+---
+
+## Mandatory Login Gate for Non-Essential Features
+**Apple**: 4.0 — Design | **Google**: Functionality policy | **Severity**: REJECTION
+
+Requiring login before users can browse or access basic content leads to rejection. Users should be able to explore the app's value before being asked to create an account.
+
+### Detect
+```bash
+# Check if login screen is the first screen
+grep -rnE "(initialRouteName|InitialRoute|firstScreen|RootNavigator)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check for authentication guards on all routes
+grep -rnE "(isAuthenticated|isLoggedIn|requireAuth|authGuard|ProtectedRoute)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check for guest/anonymous access
+grep -rnE "(guest|anonymous|skip|browse.?without|continue.?without)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+```
+
+### Fix
+1. Allow users to browse content, view the main screens, and understand the app's value without requiring login.
+2. Gate login only for personalized features (saving items, posting content, purchasing).
+3. Add a "Skip" or "Browse as Guest" option on the login screen.
+4. If your app truly requires authentication for all features (e.g., messaging app, banking app), explain this clearly and provide a demo or preview mode.
+5. Exception: apps where login IS the core feature (banking, personal health records, enterprise tools) can require immediate login — but provide the demo account in review notes.
+
+### Example Rejection
+> Guideline 4.0 — Design: Your app requires users to create an account before they can access any content. Please allow users to browse the app's content without requiring registration.

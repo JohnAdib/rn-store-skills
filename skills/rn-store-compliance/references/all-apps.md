@@ -54,6 +54,28 @@ Master checklist loaded for every app regardless of type or category.
 - [ ] POST_NOTIFICATIONS runtime permission handled (Android 13+)
 - [ ] 16 KB page size compatibility for native libraries
 
+## Copyright & Intellectual Property
+
+- [ ] All images properly licensed (owned, stock licensed, or CC0/permissive)
+- [ ] No copyrighted music or audio without license
+- [ ] No copyrighted video content without distribution rights
+- [ ] Fonts properly licensed for mobile app embedding
+- [ ] Open source licenses complied with (no GPL in App Store without compliance)
+- [ ] AI-generated content does not depict real people without consent
+- [ ] No screenshots or recordings of competitor apps
+- [ ] DMCA / copyright takedown process if app hosts user content
+
+## Legal Compliance
+
+- [ ] GDPR consent before data collection (EU users)
+- [ ] Account deletion available in-app (if account creation exists)
+- [ ] Export compliance: `ITSAppUsesNonExemptEncryption` set in Info.plist
+- [ ] COPPA compliance if targeting children under 13
+- [ ] Age rating questionnaire completed honestly
+- [ ] Terms of Service accessible in-app and on store listing
+- [ ] Loot box / gacha odds disclosed before purchase (if applicable)
+- [ ] Regional legal requirements checked (China AI terms, Russia data localization)
+
 ## Design & UX
 
 - [ ] Not a copycat of another app
@@ -79,6 +101,22 @@ Master checklist loaded for every app regardless of type or category.
 - [ ] Certificate/signing valid and not expired
 - [ ] Version number incremented above current live version
 
+## App Completeness
+
+- [ ] Demo account provided in review notes (if login required)
+- [ ] All premium features accessible during review (demo account unlocked or sandbox IAP instructions)
+- [ ] No placeholder content (Lorem ipsum, stock photos as real content, "coming soon")
+- [ ] No debug/staging labels or environment indicators in production
+- [ ] Backend services live and stable during review period (24/7)
+- [ ] All buttons and navigation destinations functional
+- [ ] No hardcoded localhost/staging URLs in production build
+
+## OTA Updates
+
+- [ ] OTA (CodePush/Expo Updates) used only for bug fixes, not new features
+- [ ] No hidden feature activation via remote config or date triggers
+- [ ] Feature flags only toggle features already present in reviewed binary
+
 ## Related Rules
 
 - See `rules/metadata.md` for metadata rejection patterns
@@ -88,3 +126,7 @@ Master checklist loaded for every app regardless of type or category.
 - See `rules/permissions.md` for permission patterns
 - See `rules/subscriptions.md` if app has subscriptions/IAP
 - See `rules/entitlements.md` for entitlement/capability issues
+- See `rules/copyright-media.md` for copyright/IP/media issues
+- See `rules/legal.md` for legal compliance (GDPR, COPPA, DMA, export)
+- See `rules/ota-updates.md` for OTA/CodePush update violations
+- See `rules/app-completeness.md` for demo accounts, placeholder content, backend readiness

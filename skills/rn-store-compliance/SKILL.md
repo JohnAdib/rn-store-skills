@@ -14,7 +14,7 @@ description: >
 license: MIT
 metadata:
   author: JohnAdib
-  version: "2.0.0"
+  version: "5.0.0"
   tags:
     - react-native
     - expo
@@ -91,6 +91,10 @@ When you need detection patterns, fix steps, and example rejection messages:
 | Entitlement/capability issues | `references/rules/entitlements.md` |
 | Crashes / performance | `references/rules/performance.md` |
 | Permission problems | `references/rules/permissions.md` |
+| Copyright / IP / media | `references/rules/copyright-media.md` |
+| Legal compliance (GDPR, COPPA, DMA) | `references/rules/legal.md` |
+| OTA / CodePush update violations | `references/rules/ota-updates.md` |
+| App completeness / demo accounts | `references/rules/app-completeness.md` |
 
 ### Step 5: Submission & Rejection
 
@@ -126,3 +130,8 @@ When you need detection patterns, fix steps, and example rejection messages:
 | VPN app | `app-types/vpn.md` |
 | macOS app | `features/macos.md` + `rules/entitlements.md` |
 | Upgrading React Native | `react-native.md` + `rules/performance.md` |
+| Copyright / media licensing | `rules/copyright-media.md` |
+| Legal / GDPR / COPPA / DMA | `rules/legal.md` + `rules/privacy.md` |
+| OTA updates (CodePush/Expo Updates) | `rules/ota-updates.md` + `react-native.md` |
+| App completeness / demo account | `rules/app-completeness.md` |
+| Account deletion requirement | `rules/design.md` + `rules/legal.md` |

@@ -4,13 +4,15 @@ React Native store compliance + App Store Connect automation skills for AI codin
 
 17 skills covering everything from rejection prevention to release automation.
 
+> Apple rejected ~1.93 million of ~7.77 million app submissions in 2024 — roughly **25% of all submissions**. Most rejections come from a small set of repeated mistakes. This skill pack helps AI agents catch every one of them before review.
+
 ## Skills
 
 ### Store Compliance
 
 | Skill | Description |
 |-------|-------------|
-| `rn-store-compliance` | React Native compliance checker — Apple & Google guidelines, 20+ rejection rules, 10 app-type checklists, RN-specific patterns |
+| `rn-store-compliance` | React Native compliance checker — Apple & Google guidelines, 30+ rejection rules, 10 app-type checklists, RN-specific patterns, copyright/IP, legal compliance, OTA update rules |
 
 ### App Store Connect CLI (`asc`)
 
@@ -97,7 +99,7 @@ skills/
 │   ├── SKILL.md
 │   └── references/
 │       ├── guidelines/                   ← Apple & Google guidelines
-│       ├── rules/                        ← 7 detection rule sets
+│       ├── rules/                        ← 11 detection rule sets
 │       ├── app-types/                    ← 7 app category checklists
 │       ├── features/                     ← 3 feature checklists
 │       ├── all-apps.md                   ← Universal checklist
@@ -133,7 +135,8 @@ skills/
 ### Store Compliance (rn-store-compliance)
 - Apple App Store Review Guidelines (1.x–5.x) — full index
 - Google Play Store Policies — full index
-- 20+ rejection rules with detection patterns, fixes, and real rejection messages
+- 30+ rejection rules with detection patterns, fixes, and real rejection messages
+- 11 rule categories (metadata, subscriptions, privacy, design, entitlements, performance, permissions, copyright/IP, legal, OTA updates, app completeness)
 - 7 app-type checklists (social, kids, health, games, AI, crypto, VPN)
 - 3 feature checklists (subscriptions, UGC, macOS)
 - React Native / Expo specific patterns and detection

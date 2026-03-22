@@ -190,6 +190,78 @@ Validate all parameters. Test from: cold start, background, other apps, Safari/C
 ### 10. Large App Size
 See `rules/performance.md` for size reduction strategies.
 
+### 11. OTA Update Violations (CodePush / Expo Updates)
+Using CodePush or Expo Updates to push new features (not just bug fixes) violates Apple 3.3.2.
+See `rules/ota-updates.md` for what's allowed and what's not.
+
+### 12. IPv6-Only Network Failure
+Apple tests on IPv6-only networks. Hardcoded IPv4 addresses or IPv4-only APIs fail.
+See IPv6 section below.
+
+---
+
+## IPv6-Only Network Compliance
+
+**Apple**: 2.5.6 — IPv6 | **Severity**: REJECTION
+
+Apple reviews apps on IPv6-only networks (NAT64/DNS64). If your app uses hardcoded IPv4 addresses, raw IP sockets, or APIs that don't support IPv6, it will fail during review.
+
+**Common React Native issues:**
+- Hardcoded IPv4 addresses in API URLs (`http://192.168.1.1`, `http://10.0.0.1`)
+- WebSocket connections to IPv4-only servers
+- Third-party SDKs that use raw sockets (some analytics, game SDKs)
+- Custom native modules using `AF_INET` without `AF_INET6` support
+
+**Detection:**
+```bash
+# Check for hardcoded IPv4 addresses
+grep -rnE "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null | grep -v "node_modules" | grep -v "0\.0\.0\.0" | grep -v "255\.255"
+
+# Check native code for IPv4-only socket usage
+grep -rnE "(AF_INET[^6]|inet_addr|SOCK_STREAM.*AF_INET)" \
+  --include="*.swift" --include="*.m" --include="*.mm" --include="*.h" \
+  ios/ 2>/dev/null
+```
+
+**Fix:**
+1. Use hostnames (domain names) instead of IP addresses — DNS resolution handles IPv6 automatically.
+2. Use high-level networking APIs (`NSURLSession`, `fetch`, `axios`) — they support IPv6 natively.
+3. Test on an IPv6-only network: Mac → System Preferences → Sharing → Internet Sharing → "Create NAT64 Network."
+4. If using custom native modules with sockets, use `getaddrinfo()` which returns both IPv4 and IPv6 addresses.
+
+---
+
+## OTA Updates (CodePush / Expo Updates)
+
+React Native's JS-based architecture enables over-the-air updates without store review. This is powerful but strictly regulated.
+
+**Key rule**: OTA is allowed ONLY for bug fixes and minor improvements. New features, behavior changes, or anything that changes the app's purpose MUST go through store review.
+
+See `rules/ota-updates.md` for complete rules, detection patterns, and what's allowed vs prohibited.
+
+**Quick reference:**
+- Bug fix → OTA ✅
+- Text/translation fix → OTA ✅
+- New screen or feature → Store submission required ❌
+- New IAP product → Store submission required ❌
+- Permission change → Store submission required ❌
+
+---
+
+## New Architecture (Fabric / TurboModules)
+
+React Native's New Architecture (enabled by default in RN 0.76+) changes the native bridge. Compliance implications:
+
+- **Bridgeless mode**: Native modules must be rewritten as TurboModules. Verify all third-party libraries support New Architecture before upgrading.
+- **Fabric renderer**: Custom native views need Fabric components. Check library compatibility.
+- **Build size**: New Architecture may slightly increase binary size. Monitor against store limits.
+- **Crash patterns**: New bridge behavior may introduce new crash vectors in release builds. Test thoroughly.
+- **Hermes**: Required with New Architecture. Ensure Hermes-specific compliance (see `rules/performance.md`).
+
+Check compatibility: `npx react-native-new-architecture-check` or review the React Native New Architecture compatibility table.
+
 ---
 
 ## AI / Generative AI Features

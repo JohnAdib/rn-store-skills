@@ -124,3 +124,115 @@ grep -rnE "(restore|restorePurchases|restore.?purchase)" \
 
 ### Example Rejection
 > Guideline 3.1.1 — Business: We found that your app uses a mechanism other than the App Store's in-app purchase API to unlock features or content. Specifically, your app uses Stripe to process subscription payments for digital content.
+
+---
+
+## Dark-Pattern Cancellation UX
+**Apple**: 3.1.2 — Subscriptions | **Google**: Subscriptions policy — Cancellation | **Severity**: REJECTION
+
+Making it difficult for users to find cancellation instructions or understand how to cancel their subscription triggers rejection. Both stores increasingly enforce transparent cancellation UX.
+
+### Detect
+```bash
+# Check for cancel/unsubscribe mentions in the app
+grep -rnE "(cancel|unsubscribe|end.?subscription|stop.?subscription)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check for subscription management screen
+grep -rnE "(manage.?subscription|subscription.?settings|subscription.?status)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ screens/ 2>/dev/null
+
+# Check for Apple/Google subscription management deep links
+grep -rnE "(apps\.apple\.com/account/subscriptions|play\.google\.com/store/account/subscriptions)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+```
+
+### Fix
+1. Include clear cancellation instructions in Settings or Account screen.
+2. Add a direct link to Apple's subscription management page (`https://apps.apple.com/account/subscriptions`) and Google's (`https://play.google.com/store/account/subscriptions`).
+3. Do NOT: require users to email support, call a number, or navigate through more than 2-3 taps to find cancellation info.
+4. Do NOT: use confusing language ("pause" when you mean "cancel"), multi-step confirmation flows designed to frustrate, or countdown timers.
+5. After cancellation, clearly show: "Your subscription is active until [date]. After that, you will lose access to premium features."
+6. If you show a retention offer (discount to stay), it must have a clear "No thanks, cancel" option that actually cancels.
+
+### Example Rejection
+> Guideline 3.1.2 — Business: Your app does not provide users with a clear mechanism to manage or cancel their subscription. Please include subscription management instructions and a link to the platform's subscription settings.
+
+---
+
+## Missing Auto-Renewal Disclaimer
+**Apple**: 3.1.2 — Subscriptions | **Google**: Subscriptions policy — Transparency | **Severity**: REJECTION
+
+Failing to display the required auto-renewal disclaimer text near the subscribe button is one of the most common subscription-related rejections. This is separate from the Terms/Privacy links — both are required.
+
+### Detect
+```bash
+# Check paywall screens for auto-renewal text
+grep -rnE "(auto.?renew|automatically.?renew|renewal|billed.?at|charged.?at|cancel.?at.?least)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ screens/ components/ 2>/dev/null
+
+# Check for required disclosure elements near subscribe buttons
+grep -rnE "(subscribe|purchase|start.?trial|get.?premium|go.?pro)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ screens/ 2>/dev/null
+```
+
+### Fix
+1. Add auto-renewal disclaimer text BELOW (or very near) the subscribe button. Must be visible without scrolling.
+2. Required information in the disclaimer:
+   - The subscription auto-renews
+   - The renewal price and frequency
+   - How to cancel (at least 24 hours before end of current period)
+   - That cancellation takes effect at end of current period
+3. Example text:
+   ```
+   $9.99/month. Auto-renews monthly. Cancel anytime in your device's
+   subscription settings at least 24 hours before renewal. Your account
+   will be charged within 24 hours before the end of the current period.
+   ```
+4. The text must be legible — minimum ~10pt font, sufficient contrast, not hidden in a scrollable area below the fold.
+5. For free trials, add: "Free trial for 7 days, then $9.99/month."
+
+### Example Rejection
+> Guideline 3.1.2 — Business: Your app's subscription screen does not clearly disclose that the subscription auto-renews and the terms of renewal. Please add auto-renewal disclosure text near the subscribe button.
+
+---
+
+## Price Increase Without User Consent
+**Apple**: 3.1.2 — Subscriptions | **Google**: Subscriptions policy — Price changes | **Severity**: REJECTION / SUBSCRIPTION CANCELLED
+
+Raising subscription prices without proper user notification and consent flow violates store policies. Both Apple and Google have specific mechanisms for handling price increases.
+
+### Detect
+```bash
+# Check for price change handling code
+grep -rnE "(price.?change|price.?increase|price.?update|priceChange|PriceIncreaseConsent)" \
+  --include="*.tsx" --include="*.ts" --include="*.jsx" --include="*.js" \
+  src/ app/ 2>/dev/null
+
+# Check for StoreKit 2 Message handling (iOS price consent)
+grep -rnE "(Message|messages|paymentQueueRestoreCompletedTransactionsFinished|SKPaymentTransactionObserver)" \
+  --include="*.tsx" --include="*.ts" --include="*.swift" --include="*.m" \
+  src/ app/ ios/ 2>/dev/null
+```
+
+### Fix
+1. **Apple**: When you change a subscription price in App Store Connect:
+   - Small increases (< 50% AND < $5): Apple auto-consents on behalf of users. Users are notified but don't need to take action.
+   - Large increases: Apple shows consent dialog. Users have 60 days to accept. If they don't accept, their subscription is cancelled at the end of the current period.
+   - Your app should listen for `Message.messages` in StoreKit 2 to display price consent sheets.
+2. **Google Play**: Users are notified of price changes. They have 30 days to opt in. If they don't, the subscription cancels.
+3. Implement price change handling:
+   ```tsx
+   // react-native-iap: listen for price consent events
+   // Display Apple's price consent sheet when triggered
+   ```
+4. Notify users in-app before the price change takes effect — don't rely solely on the platform's notification.
+5. Consider grandfathering existing subscribers at the old price to reduce churn.
+
+### Example Rejection
+> Your app increased subscription prices without implementing the required price consent mechanism. Existing subscribers must be notified and given the option to accept the new price or cancel.
